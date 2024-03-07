@@ -1,12 +1,17 @@
 import { Pokemon } from "@/pokemons";
 import { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 interface PokemonPageProps {
   params: {
     id: string;
   };
+}
+
+export async function generateStaticParams() {
+  const static151Pokemons = Array.from({ length: 151 }, (_, i) => i + 1);
+  return static151Pokemons.map((id) => ({ id: id.toString() }));
 }
 
 export async function generateMetadata({
@@ -74,13 +79,13 @@ export default async function PokemonPage({ params }: PokemonPageProps) {
               className="mb-5"
             />
 
-            <div className="flex flex-wrap">
+            {/* <div className="flex flex-wrap">
               {pokemon.moves.map((move) => (
                 <p key={move.move.name} className="mr-2 capitalize">
                   {move.move.name}
                 </p>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 px-2 w-full">
@@ -91,7 +96,7 @@ export default async function PokemonPage({ params }: PokemonPageProps) {
                 <p
                   key={type.slot}
                   className={`
-                    font-bold text-sm px-2 py-1 rounded-md 
+                    font-bold text-sm px-2 py-1 rounded-md text-white 
                     ${
                       TYPES_COLORS.find((t) => t.type === type.type.name)?.color
                     }
