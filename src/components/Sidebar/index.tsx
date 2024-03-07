@@ -3,6 +3,7 @@ import React from "react";
 import {
   IoBrowsersOutline,
   IoCalculator,
+  IoHeartOutline,
   IoLogoReact,
   IoPlanet,
 } from "react-icons/io5";
@@ -26,6 +27,12 @@ const menuItems = [
     icon: <IoPlanet size={30} />,
     title: "Pokemons",
     subtitle: " Static Generation Example",
+  },
+  {
+    path: "/dashboard/favorites",
+    icon: <IoHeartOutline size={30} />,
+    title: "Favorites",
+    subtitle: "Global State Example",
   },
 ];
 
