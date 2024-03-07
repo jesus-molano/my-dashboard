@@ -1,5 +1,10 @@
 import { PokemonGrid, PokemonsResponse, SimplePokemon } from "@/pokemons";
 
+export const metadata = {
+  title: "First Generation Pokemons",
+  description: "This is the page for the first generation pokemons.",
+};
+
 const getPokemons = async (
   limit = 20,
   offset = 0
