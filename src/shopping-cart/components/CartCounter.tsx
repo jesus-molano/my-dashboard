@@ -12,13 +12,27 @@ interface CartCounterProps {
   initialValue?: number;
 }
 
+interface CounterResponse {
+  count: number;
+}
+
+// Obtains the counter value from the API
+const getApiCounter = async (): Promise<CounterResponse> => {
+  const response = await fetch("/api/counter");
+  const data = await response.json();
+  return data;
+};
+
 export const CartCounter = ({ initialValue = 0 }: CartCounterProps) => {
   const count = useAppSelector((state) => state.counter.count);
   const dispatch = useAppDispatch();
 
   const initialized = useRef(false);
   if (!initialized.current) {
-    dispatch(initCounterState(initialValue));
+    // dispatch(initCounterState(initialValue));
+    getApiCounter().then((data) => {
+      dispatch(initCounterState(data.count));
+    });
     initialized.current = true;
   }
 
