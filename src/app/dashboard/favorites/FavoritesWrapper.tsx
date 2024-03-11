@@ -1,18 +1,20 @@
 "use client";
 import { useAppSelector } from "@/lib/hooks";
 import { PokemonGrid } from "@/pokemons";
-import React, { useState } from "react";
+import React from "react";
 import { NotFavorites } from "./NotFavorites";
 
 export const FavoritesWrapper = () => {
-  const favPokemons = useAppSelector((state) => Object.values(state.pokemons));
-  const [pokemons, setPokemons] = useState(favPokemons);
+  const favPokemons = useAppSelector((state) =>
+    Object.values(state.pokemons.favorites)
+  );
+
   return (
     <>
-      {pokemons.length === 0 ? (
+      {favPokemons.length === 0 ? (
         <NotFavorites />
       ) : (
-        <PokemonGrid pokemons={pokemons} />
+        <PokemonGrid pokemons={favPokemons} />
       )}
     </>
   );
